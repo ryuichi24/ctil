@@ -1,0 +1,15 @@
+build
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+!.vscode/c_cpp_properties.json
+
+# mac
+.DS_*
+**/*.backup.*
+**/*.back.*
