@@ -148,3 +148,35 @@ markmap:
 
     4. `option_value`: A pointer to the value for the option. Here, &opt is passed.
     5. `option_len`: The size of the option_value. Here, sizeof(opt)
+
+## Parameters
+
+- `sockaddr_in`
+
+  - structure in C used to specify an endpoint address for IPv4.
+  - What does "in" stand for?
+    - The "in" in sockaddr_in stands for "internet", specifically referring to the Internet Protocol (IP).
+      - `sockaddr_in6` → for IPv6 (version 6 of IP)
+  - members
+  - `address.sin_family`
+  - `address.sin_addr.s_addr`
+
+    - host part
+      - e.g. `address.sin_addr.s_addr = INADDR_ANY`
+      - | Name                    | Value                  | Description                                                               |
+        | ----------------------- | ---------------------- | ------------------------------------------------------------------------- |
+        | `INADDR_ANY`            | `0.0.0.0`              | Bind to **all** local interfaces (used in servers)                        |
+        | `INADDR_LOOPBACK`       | `127.0.0.1`            | Bind to **loopback** interface only (localhost)                           |
+        | `INADDR_BROADCAST`      | `255.255.255.255`      | Broadcast address (used for sending UDP to all on subnet)                 |
+        | `INADDR_NONE`           | `-1` (or `0xFFFFFFFF`) | Indicates an invalid address (usually returned by `inet_addr()` on error) |
+        | `INADDR_UNSPEC_GROUP`   | `224.0.0.0`            | Start of the IPv4 multicast range (used with multicast sockets)           |
+        | `INADDR_ALLHOSTS_GROUP` | `224.0.0.1`            | IPv4 multicast to all hosts on subnet                                     |
+        | `INADDR_ALLRTRS_GROUP`  | `224.0.0.2`            | IPv4 multicast to all routers on subnet                                   |
+
+  - `address.sin_port`
+    - binding port
+      - e.g. `address.sin_port = htons(PORT);`
+        - what does `htons` do?
+          - a macro
+            `#define htons(x) __DARWIN_OSSwapInt16(x)`
+          - the function (Host TO Network Short) converts a 16-bit port number from host byte order to network byte order.
