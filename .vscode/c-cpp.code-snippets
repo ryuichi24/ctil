@@ -1,0 +1,13 @@
+{
+    "cheader": {
+        "scope": "c,cpp",
+        "prefix": "cheader",
+        "body": [
+            "#ifndef ${TM_FILENAME_BASE/(\\w+)/${1:/upcase}/g}_H",
+            "#define ${TM_FILENAME_BASE/(\\w+)/${1:/upcase}/g}_H",
+            "",
+            "#endif /* ${TM_FILENAME_BASE/(\\w+)/${1:/upcase}/g}_H */"
+        ],
+        "description": "C Header"
+    }
+}
