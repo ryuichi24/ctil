@@ -8,6 +8,8 @@
 #include <sys/socket.h> // socket functions
 #include <netinet/in.h> // sockaddr_in
 
+#include "http.h"
+
 // general constants
 #define MAX_PATH_LENGTH 1024
 
@@ -29,17 +31,6 @@ void handle_sigint(int signal)
 void handle_sigchld(int signal)
 {
     printf("Received SIGCHLD\n");
-}
-
-int is_valid_port(int port)
-{
-    if (port <= 0 || port > 65535)
-    {
-        fprintf(stderr, "Invalid port number: %d\n", port);
-        return 1;
-    }
-
-    return 0;
 }
 
 void worker_process(int server_fd, int worker_id)
